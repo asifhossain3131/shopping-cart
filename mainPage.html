@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.1/dist/full.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    
+<header> 
+    <div class="navbar bg-base-100 px-12">
+        <div class="flex-1">
+          <a class="btn btn-ghost normal-case text-xl">Shopping cart</a>
+        </div>
+        <div class="flex-none gap-4">
+            <div class="form-control">
+                <input type="text" placeholder="Search" class="input input-bordered" />
+              </div>
+          <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle">
+              <div class="indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                <span id="cart-box-items" class="badge badge-sm indicator-item">0</span>
+              </div>
+            </label>
+            <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
+              <div class="card-body">
+                <span class="font-bold text-lg text-info">Items: <span id="cart-total-items">0</span></span>
+                <span class="text-info">Subtotal: $<span  id="cart-box-subtotal">0</span></span>
+                <div class="card-actions">
+                  <button class="btn btn-primary btn-block"><a href="#table-container">View Cart</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+              <div class="w-10 rounded-full">
+                <img src="https://picsum.photos/500/300?random=2" />
+              </div>
+            </label>
+            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <li>
+                <a class="justify-between">
+                  Profile
+                  <span class="badge">New</span>
+                </a>
+              </li>
+              <li><a>Settings</a></li>
+              <li><a>Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+</header>
+
+<main>
+  <!-- products section -->
+   <section class="mt-16 px-12 mx-auto">
+    <div class="grid lg:grid-cols-3 gap-4">
+        <div class="card card-compact w-96 bg-base-100 shadow-xl h-[480px] w-full">
+            <figure><img src="/img/coffee.jpg" alt="Shoes"/></figure>
+            <div class="card-body">
+              <h2 id="coffee" class="card-title">Coffee JS</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, aliquam.</p>
+              <p class="my-4">Price: $<span id="coffee-price">700</span></p>
+              <p>Quantity:</p>
+              <div class="flex">
+                <button  onclick="PlusMinus('coffee-field', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="coffee-field" type="number" min="0" class="form-control text-center w-12" value="0">
+                <button  onclick="PlusMinus('coffee-field', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+             </div>
+              <div class="card-actions justify-end">
+                <button id="coffee-btn" class="btn btn-primary">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        <div class="card card-compact w-96 bg-base-100 shadow-xl  h-[480px] w-full">
+            <figure><img src="/img/heart_js.jpg" alt="Shoes" /></figure>
+            <div class="card-body">
+              <h2 id="heart" class="card-title">Heart JS</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, aliquam.</p>
+              <p class="my-4">Price: $<span id="heart-price">500</span></p>
+              <p>Quantity:</p>
+              <div class="flex">
+                <button  onclick="PlusMinus('heart-field', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="heart-field" type="number" min="0" class="form-control text-center w-12" value="0">
+                <button onclick="PlusMinus('heart-field', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+             </div>
+              <div class="card-actions justify-end">
+                <button id="heart-btn" class="btn btn-primary">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        <div class="card card-compact w-96 bg-base-100 shadow-xl  h-[480px] w-full">
+            <figure><img src="/img/panda.png" alt="Shoes" /></figure>
+            <div class="card-body">
+              <h2 id="panda" class="card-title">Panda JS</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, aliquam.</p>
+              <p class="my-4">Price: $<span id="panda-price">1000</span></p>
+              <p>Quantity:</p>
+              <div class="flex">
+                <button onclick="PlusMinus('panda-field', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="panda-field" type="number" min="0" class="form-control text-center w-12" value="0">
+                <button onclick="PlusMinus('panda-field', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+             </div>
+              <div class="card-actions justify-end">
+                <button id="panda-btn" class="btn btn-primary">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        <div class="card card-compact w-96 bg-base-100 shadow-xl  h-[480px] w-full">
+            <figure><img src="/img/umbrella.png" alt="Shoes" /></figure>
+            <div class="card-body">
+              <h2 id="umbrella" class="card-title">Umbrella JS</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, aliquam.</p>
+              <p class="my-4">Price: $<span id="umbrella-price">300</span></p>
+              <p>Quantity:</p>
+              <div class="flex">
+                <button onclick="PlusMinus('umbrella-field', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="umbrella-field" type="number" min="0" class="form-control text-center w-12" value="0">
+                <button onclick="PlusMinus('umbrella-field', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+             </div>
+              <div class="card-actions justify-end">
+                <button id="umbrella-btn" class="btn btn-primary">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        <div class="card card-compact w-96 bg-base-100 shadow-xl  h-[480px] w-full">
+            <figure><img src="/img/vue-js.jpg" alt="Shoes" /></figure>
+            <div class="card-body">
+              <h2 id="vue" class="card-title">Vue JS</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, aliquam.</p>
+              <p class="my-4">Price: $<span id="vue-price">1200</span></p>
+              <p>Quantity:</p>
+              <div class="flex">
+                <button onclick="PlusMinus('vue-field', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="vue-field" type="number" min="0" class="form-control text-center w-12" value="0">
+                <button onclick="PlusMinus('vue-field', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+             </div>
+              <div class="card-actions justify-end">
+                <button id="vue-btn" class="btn btn-primary">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        <div class="card card-compact w-96 bg-base-100 shadow-xl  h-[480px] w-full">
+            <figure><img src="/img/umbrella.png" alt="Shoes" /></figure>
+            <div class="card-body">
+              <h2 id="unique" class="card-title">Unique JS</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, aliquam.</p>
+              <p class="my-4">Price: $<span id="unique-price">1500</span></p>
+              <p>Quantity:</p>
+              <div class="flex">
+                <button onclick="PlusMinus('unique-field', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="unique-field" type="number" min="0" class="form-control text-center w-12" value="0">
+                <button onclick="PlusMinus('unique-field', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+             </div>
+              <div class="card-actions justify-end">
+                <button id="unique-btn" class="btn btn-primary">Add to cart</button>
+              </div>
+            </div>
+          </div>
+    </div>
+   </section>
+
+   <!-- cart items section -->
+ <section class="px-28 mx-auto mt-12">
+  <div class="overflow-x-auto">
+    <table  id="table-container" class="table w-full">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th>SL. NO.</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+       
+      </tbody>
+    </table>
+  </div>
+ </section>
+</main>
+<script src="js/utility.js"></script>
+    <script src="js/mainPage.js"></script>
+</body>
+</html>
+
+
+
